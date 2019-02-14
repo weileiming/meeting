@@ -16,6 +16,7 @@
         <module>guns-generator</module>
         <module>meeting-gateway</module>
         <module>meeting-api</module>
+        <module>meeting-user</module>
     </modules>
 
     <parent>

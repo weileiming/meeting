@@ -2,9 +2,9 @@ package com.stylefeng.guns.jwt;
 
 import com.alibaba.fastjson.JSON;
 import com.stylefeng.guns.core.util.MD5Util;
-import me.willwei.meeting.gateway.common.SimpleObject;
-import me.willwei.meeting.gateway.modular.auth.converter.BaseTransferEntity;
-import me.willwei.meeting.gateway.modular.auth.security.impl.Base64SecurityAction;
+import me.willwei.meeting.user.common.SimpleObject;
+import me.willwei.meeting.user.modular.auth.converter.BaseTransferEntity;
+import me.willwei.meeting.user.modular.auth.security.impl.Base64SecurityAction;
 
 /**
  * jwt测试

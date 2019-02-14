@@ -1,10 +1,10 @@
-package com.stylefeng.guns.rest.modular.auth.validator.impl;
+package me.willwei.meeting.user.modular.auth.validator.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.stylefeng.guns.rest.common.persistence.dao.UserMapper;
-import com.stylefeng.guns.rest.common.persistence.model.User;
-import com.stylefeng.guns.rest.modular.auth.validator.IReqValidator;
-import com.stylefeng.guns.rest.modular.auth.validator.dto.Credence;
+import me.willwei.meeting.user.common.persistence.dao.UserMapper;
+import me.willwei.meeting.user.common.persistence.model.User;
+import me.willwei.meeting.user.modular.auth.validator.IReqValidator;
+import me.willwei.meeting.user.modular.auth.validator.dto.Credence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

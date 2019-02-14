@@ -2,8 +2,8 @@ package com.stylefeng.guns.fastjson;
 
 import com.alibaba.fastjson.JSON;
 import com.stylefeng.guns.core.util.MD5Util;
-import me.willwei.meeting.gateway.common.SimpleObject;
-import me.willwei.meeting.gateway.modular.auth.converter.BaseTransferEntity;
+import me.willwei.meeting.user.common.SimpleObject;
+import me.willwei.meeting.user.modular.auth.converter.BaseTransferEntity;
 
 /**
  * json测试
