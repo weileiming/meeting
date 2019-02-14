@@ -15,6 +15,7 @@
         <module>guns-rest</module>
         <module>guns-generator</module>
         <module>meeting-gateway</module>
+        <module>meeting-api</module>
     </modules>
 
     <parent>

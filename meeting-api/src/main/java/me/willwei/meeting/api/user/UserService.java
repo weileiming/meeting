@@ -1,4 +1,4 @@
-package com.stylefeng.guns.rest.modular.user.service;
+package me.willwei.meeting.api.user;
 
 /**
  * UserService

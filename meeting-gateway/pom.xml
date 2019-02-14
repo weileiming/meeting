@@ -65,6 +65,13 @@
             <version>${guns.version}</version>
         </dependency>
 
+        <!-- Meeting api -->
+        <dependency>
+            <groupId>me.willwei.meeting</groupId>
+            <artifactId>meeting-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <!-- Dubbo Spring Boot Starter -->
         <dependency>
             <groupId>com.alibaba.boot</groupId>

@@ -1,7 +1,7 @@
-package com.stylefeng.guns.rest.modular.user.service.impl;
+package com.stylefeng.guns.rest.modular.user.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.stylefeng.guns.rest.modular.user.service.UserService;
+import me.willwei.meeting.api.user.UserService;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
