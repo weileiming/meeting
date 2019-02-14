@@ -2,13 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
-        <groupId>com.stylefeng</groupId>
-        <artifactId>guns-parent</artifactId>
+        <groupId>me.willwei.meeting</groupId>
+        <artifactId>meeting-parent</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
+    <groupId>com.stylefeng</groupId>
     <artifactId>guns-admin</artifactId>
     <name>guns-admin</name>
     <description>guns 的spring boot版本</description>
@@ -20,10 +22,12 @@
         <dependency>
             <groupId>com.stylefeng</groupId>
             <artifactId>guns-core</artifactId>
+            <version>${guns.version}</version>
         </dependency>
         <dependency>
             <groupId>com.stylefeng</groupId>
             <artifactId>guns-generator</artifactId>
+            <version>${guns.version}</version>
         </dependency>
 
         <!--spring boot依赖-->

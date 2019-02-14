@@ -3,6 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.stylefeng</groupId>
     <artifactId>guns-generator</artifactId>
     <packaging>jar</packaging>
 
@@ -10,8 +11,8 @@
     <description>代码生成器</description>
 
     <parent>
-        <groupId>com.stylefeng</groupId>
-        <artifactId>guns-parent</artifactId>
+        <groupId>me.willwei.meeting</groupId>
+        <artifactId>meeting-parent</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -20,6 +21,7 @@
         <dependency>
             <groupId>com.stylefeng</groupId>
             <artifactId>guns-core</artifactId>
+            <version>${guns.version}</version>
         </dependency>
         <dependency>
             <groupId>com.ibeetl</groupId>

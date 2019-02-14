@@ -5,15 +5,15 @@
 
     <groupId>com.stylefeng.guns</groupId>
     <artifactId>guns-rest</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>guns-rest</name>
     <description>guns REST服务器</description>
 
     <parent>
-        <groupId>com.stylefeng</groupId>
-        <artifactId>guns-parent</artifactId>
+        <groupId>me.willwei.meeting</groupId>
+        <artifactId>meeting-parent</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -35,6 +35,7 @@
         <dependency>
             <groupId>com.stylefeng</groupId>
             <artifactId>guns-core</artifactId>
+            <version>${guns.version}</version>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
