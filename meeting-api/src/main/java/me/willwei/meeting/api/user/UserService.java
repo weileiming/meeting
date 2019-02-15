@@ -10,6 +10,4 @@ public interface UserService {
 
     boolean login(String username, String password);
 
-    String sayHello(String name);
-
 }

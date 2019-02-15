@@ -22,9 +22,4 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-    @Override
-    public String sayHello(String name) {
-        return String.format("[%s] : Hello, %s", serviceName, name);
-    }
-
 }
