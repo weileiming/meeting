@@ -8,6 +8,14 @@ package me.willwei.meeting.api.user;
  */
 public interface UserService {
 
-    boolean login(String username, String password);
+    int login(String username, String password);
+
+    boolean register(UserModel userModel);
+
+    boolean checkUserName(String username);
+
+    UserVO getUserInfo(Integer uuid);
+
+    UserVO updateUserInfo(UserVO userVO);
 
 }
