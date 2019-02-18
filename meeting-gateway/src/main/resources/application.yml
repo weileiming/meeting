@@ -39,10 +39,14 @@ embedded:
   zookeeper:
     port: 2181
 
+user:
+  service:
+    version: 1.0.0
+
 dubbo:
   registry: # Dubbo Registry
     address: zookeeper://127.0.0.1:${embedded.zookeeper.port}
-    client: zkclient
+    client: curator # zkclient
 
 logging:
   level.root: info

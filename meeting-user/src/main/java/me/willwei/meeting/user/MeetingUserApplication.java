@@ -1,6 +1,5 @@
 package me.willwei.meeting.user;
 
-import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
@@ -12,7 +11,6 @@ public class MeetingUserApplication {
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(MeetingUserApplication.class)
-                .web(WebApplicationType.SERVLET)
                 .listeners((ApplicationListener<ApplicationEnvironmentPreparedEvent>) event -> {
                     Environment environment = event.getEnvironment();
                     int port = environment.getProperty("embedded.zookeeper.port", int.class);

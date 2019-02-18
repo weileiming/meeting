@@ -39,6 +39,10 @@ embedded:
   zookeeper:
     port: 2181
 
+user:
+  service:
+    version: 1.0.0
+
 dubbo:
   scan:
     base-packages: me.willwei.meeting.user.modular.user.service # Base packages to scan Dubbo Component: @com.alibaba.dubbo.config.annotation.Service
@@ -47,7 +51,7 @@ dubbo:
     port: -1
   registry: # Dubbo Registry
     address: zookeeper://127.0.0.1:${embedded.zookeeper.port} # N/A
-    client: zkclient
+    client: curator # zkclient
 
 logging:
   level.root: info

@@ -1,7 +1,7 @@
 package me.willwei.meeting.user.modular.user.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import me.willwei.meeting.api.user.UserService;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
  * @author leiming
  * @date 2019/2/13
  */
-@Service(version = "1.0.0")
+@Service(version = "${user.service.version}")
 public class UserServiceImpl implements UserService {
 
     @Value("${dubbo.application.name}")
@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean login(String username, String password) {
-        System.out.println("this is user service: " + username + ", " + password);
+        System.out.println(serviceName + ": " + "this is user service: " + username + ", " + password);
         return false;
     }
 
