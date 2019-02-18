@@ -49,9 +49,12 @@ dubbo:
   protocol: # Dubbo Protocol
     name: dubbo
     port: -1
+  configcenter: zookeeper://127.0.0.1:${embedded.zookeeper.port}
   registry: # Dubbo Registry
     address: zookeeper://127.0.0.1:${embedded.zookeeper.port} # N/A
     client: curator # zkclient
+  metadata-report:
+    address: zookeeper://127.0.0.1:${embedded.zookeeper.port}
 
 logging:
   level.root: info
