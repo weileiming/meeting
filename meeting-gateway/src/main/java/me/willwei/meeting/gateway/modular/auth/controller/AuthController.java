@@ -1,20 +1,14 @@
 package me.willwei.meeting.gateway.modular.auth.controller;
 
-import com.stylefeng.guns.core.exception.GunsException;
 import me.willwei.meeting.api.user.UserService;
-import me.willwei.meeting.gateway.common.exception.BizExceptionEnum;
 import me.willwei.meeting.gateway.modular.auth.controller.dto.AuthRequest;
 import me.willwei.meeting.gateway.modular.auth.controller.dto.AuthResponse;
 import me.willwei.meeting.gateway.modular.auth.util.JwtTokenUtil;
-import me.willwei.meeting.gateway.modular.auth.validator.IReqValidator;
 import me.willwei.meeting.gateway.modular.vo.ResponseVO;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 /**
  * 请求验证的
