@@ -2,10 +2,11 @@ package me.willwei.meeting.gateway.modular.auth.filter;
 
 import com.stylefeng.guns.core.base.tips.ErrorTip;
 import com.stylefeng.guns.core.util.RenderUtil;
+import io.jsonwebtoken.JwtException;
+import me.willwei.meeting.gateway.common.CurrentUser;
 import me.willwei.meeting.gateway.common.exception.BizExceptionEnum;
 import me.willwei.meeting.gateway.config.properties.JwtProperties;
 import me.willwei.meeting.gateway.modular.auth.util.JwtTokenUtil;
-import io.jsonwebtoken.JwtException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,14 @@ public class AuthFilter extends OncePerRequestFilter {
         String authToken = null;
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
             authToken = requestHeader.substring(7);
+
+            // 通过token获取userId，并且将之存入ThreadLocal，以便后续业务调用
+            String userId = jwtTokenUtil.getUsernameFromToken(authToken);
+            if (userId == null) {
+                return;
+            } else {
+                CurrentUser.saveUserId(userId);
+            }
 
             //验证token是否过期,包含了验证jwt是否正确
             try {
