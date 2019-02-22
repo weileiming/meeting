@@ -1,5 +1,6 @@
 package me.willwei.meeting.user.modular.user.service;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.core.util.MD5Util;
 import me.willwei.meeting.api.user.UserModel;
 import me.willwei.meeting.api.user.UserService;
@@ -23,6 +24,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int login(String username, String password) {
+        UserT userT = new UserT();
+        userT.setUserName(username);
+        UserT result = this.userTMapper.selectOne(userT);
+
+        if (result != null && result.getUuid() > 0) {
+            String md5Pwd = MD5Util.encrypt(password);
+            if (result.getUserPwd().equals(md5Pwd)) {
+                return result.getUuid();
+            }
+        }
         return 0;
     }
 
@@ -49,7 +60,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkUserName(String username) {
-        return false;
+        EntityWrapper<UserT> entityWrapper = new EntityWrapper<>();
+        entityWrapper.eq("user_name", username);
+        Integer result = this.userTMapper.selectCount(entityWrapper);
+
+        if (result != null && result > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override
