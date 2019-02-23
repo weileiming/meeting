@@ -8,6 +8,8 @@ package me.willwei.meeting.api.user;
  */
 public class UserVO {
 
+    private Integer uuid;
+
     private String username;
 
     private String nickname;
@@ -31,6 +33,14 @@ public class UserVO {
     private Long beginTime;
 
     private Long updateTime;
+
+    public Integer getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(Integer uuid) {
+        this.uuid = uuid;
+    }
 
     public String getUsername() {
         return username;

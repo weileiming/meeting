@@ -10,6 +10,8 @@ import me.willwei.meeting.user.common.persistence.model.UserT;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Date;
+
 /**
  * UserServiceImpl
  *
@@ -80,11 +82,31 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO updateUserInfo(UserVO userVO) {
-        return null;
+        UserT userT = new UserT();
+        userT.setUuid(userVO.getUuid());
+        userT.setNickName(userVO.getNickname());
+        userT.setLifeState(Integer.valueOf(userVO.getLifeState()));
+        userT.setBirthday(userVO.getBirthday());
+        userT.setBiography(userVO.getBiography());
+        userT.setBeginTime(new Date(userVO.getBeginTime()));
+        userT.setHeadUrl(userVO.getHeadAddress());
+        userT.setEmail(userVO.getEmail());
+        userT.setAddress(userVO.getAddress());
+        userT.setUserPhone(userVO.getPhone());
+        userT.setUserSex(userVO.getSex());
+        userT.setUpdateTime(new Date(System.currentTimeMillis()));
+
+        Integer isSuccessful = this.userTMapper.updateById(userT);
+        if (isSuccessful > 0) {
+            return this.getUserInfo(userT.getUuid());
+        } else {
+            return userVO;
+        }
     }
 
     private UserVO do2UserVO(UserT userT) {
         UserVO userVO = new UserVO();
+        userVO.setUuid(userT.getUuid());
         userVO.setHeadAddress(userT.getHeadUrl());
         userVO.setPhone(userT.getUserPhone());
         userVO.setUpdateTime(userT.getUpdateTime().getTime());
