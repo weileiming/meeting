@@ -73,12 +73,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO getUserInfo(Integer uuid) {
-        return null;
+        UserT userT = this.userTMapper.selectById(uuid);
+        UserVO userVO = this.do2UserVO(userT);
+        return userVO;
     }
 
     @Override
     public UserVO updateUserInfo(UserVO userVO) {
         return null;
+    }
+
+    private UserVO do2UserVO(UserT userT) {
+        UserVO userVO = new UserVO();
+        userVO.setHeadAddress(userT.getHeadUrl());
+        userVO.setPhone(userT.getUserPhone());
+        userVO.setUpdateTime(userT.getUpdateTime().getTime());
+        userVO.setEmail(userT.getEmail());
+        userVO.setUsername(userT.getUserName());
+        userVO.setNickname(userT.getNickName());
+        userVO.setLifeState(String.valueOf(userT.getLifeState()));
+        userVO.setBirthday(userT.getBirthday());
+        userVO.setAddress(userT.getAddress());
+        userVO.setSex(userT.getUserSex());
+        userVO.setBeginTime(userT.getBeginTime().getTime());
+        userVO.setBiography(userT.getBiography());
+
+        return userVO;
     }
 
 }
