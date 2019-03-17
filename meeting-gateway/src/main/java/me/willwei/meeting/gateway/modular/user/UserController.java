@@ -96,7 +96,7 @@ public class UserController {
             // 将用户ID传入后端进行查询
             int uuid = Integer.parseInt(userId);
             // 判断当前登录人员的ID与修改的结果ID是否一致
-            if (uuid == userVO.getUuid()) {
+            if (uuid != userVO.getUuid()) {
                 return ResponseVO.serviceFail("请修改您个人的信息");
             }
 

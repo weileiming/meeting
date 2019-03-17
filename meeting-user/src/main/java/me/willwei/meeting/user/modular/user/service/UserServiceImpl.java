@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
         userT.setLifeState(Integer.valueOf(userVO.getLifeState()));
         userT.setBirthday(userVO.getBirthday());
         userT.setBiography(userVO.getBiography());
-        userT.setBeginTime(new Date(userVO.getBeginTime()));
+//        userT.setBeginTime(new Date(userVO.getBeginTime()));
         userT.setHeadUrl(userVO.getHeadAddress());
         userT.setEmail(userVO.getEmail());
         userT.setAddress(userVO.getAddress());
