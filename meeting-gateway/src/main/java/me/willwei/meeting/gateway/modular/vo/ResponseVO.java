@@ -12,6 +12,7 @@ public class ResponseVO<M> {
      * 返回状态
      * 0 - 成功
      * 1 - 失败
+     * 998 - 业务异常
      * 999 - 系统异常
      */
     private Integer status;
@@ -53,6 +54,14 @@ public class ResponseVO<M> {
     }
 
     public static<M> ResponseVO systemFail(String msg) {
+        ResponseVO responseVO = new ResponseVO();
+        responseVO.setStatus(999);
+        responseVO.setMsg(msg);
+
+        return responseVO;
+    }
+
+    public static<M> ResponseVO appFail(String msg) {
         ResponseVO responseVO = new ResponseVO();
         responseVO.setStatus(999);
         responseVO.setMsg(msg);

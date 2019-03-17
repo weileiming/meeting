@@ -2,6 +2,8 @@ package me.willwei.meeting.gateway.modular.user;
 
 import me.willwei.meeting.api.user.UserModel;
 import me.willwei.meeting.api.user.UserService;
+import me.willwei.meeting.api.user.UserVO;
+import me.willwei.meeting.gateway.common.CurrentUser;
 import me.willwei.meeting.gateway.modular.vo.ResponseVO;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,6 +68,47 @@ public class UserController {
          */
 
         return ResponseVO.success("用户退出成功");
+    }
+
+    @RequestMapping(name = "getUserInfo", method = RequestMethod.GET)
+    public ResponseVO getUserInfo() {
+        // 获取当前登录用户
+        String userId = CurrentUser.getCurrentUser();
+        if (userId != null && userId.trim().length() > 0) {
+            // 将用户ID传入后端进行查询
+            int uuid = Integer.parseInt(userId);
+            UserVO userInfo = this.userService.getUserInfo(uuid);
+            if (userInfo != null) {
+                return ResponseVO.success(userInfo);
+            } else {
+                return ResponseVO.appFail("用户信息查询失败");
+            }
+        } else {
+            return ResponseVO.serviceFail("用户未登录");
+        }
+    }
+
+    @RequestMapping(name = "updateUserInfo", method = RequestMethod.POST)
+    public ResponseVO updateUserInfo(UserVO userVO) {
+        // 获取当前登录用户
+        String userId = CurrentUser.getCurrentUser();
+        if (userId != null && userId.trim().length() > 0) {
+            // 将用户ID传入后端进行查询
+            int uuid = Integer.parseInt(userId);
+            // 判断当前登录人员的ID与修改的结果ID是否一致
+            if (uuid == userVO.getUuid()) {
+                return ResponseVO.serviceFail("请修改您个人的信息");
+            }
+
+            UserVO userInfo = this.userService.updateUserInfo(userVO);
+            if (userInfo != null) {
+                return ResponseVO.success(userInfo);
+            } else {
+                return ResponseVO.appFail("用户信息修改失败");
+            }
+        } else {
+            return ResponseVO.serviceFail("用户未登录");
+        }
     }
 
 }
