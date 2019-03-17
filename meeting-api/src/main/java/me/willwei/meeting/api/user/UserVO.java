@@ -1,12 +1,14 @@
 package me.willwei.meeting.api.user;
 
+import java.io.Serializable;
+
 /**
  * UserVO
  *
  * @author leiming
  * @date 2019/2/18
  */
-public class UserVO {
+public class UserVO implements Serializable {
 
     private Integer uuid;
 
