@@ -9,3 +9,6 @@
 - ZooKeeper 3.4.13
 - Guns 4.2
 
+## 启动顺序
+
+先启动meeting-user，再启动meeting-gateway
