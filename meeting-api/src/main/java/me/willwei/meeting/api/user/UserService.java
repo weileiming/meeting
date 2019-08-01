@@ -1,5 +1,8 @@
 package me.willwei.meeting.api.user;
 
+import me.willwei.meeting.api.user.vo.UserModel;
+import me.willwei.meeting.api.user.vo.UserVO;
+
 /**
  * UserService
  *

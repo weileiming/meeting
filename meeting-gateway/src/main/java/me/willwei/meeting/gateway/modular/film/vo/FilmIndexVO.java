@@ -1,6 +1,9 @@
 package me.willwei.meeting.gateway.modular.film.vo;
 
 import lombok.Data;
+import me.willwei.meeting.api.film.vo.BannerVO;
+import me.willwei.meeting.api.film.vo.FilmInfo;
+import me.willwei.meeting.api.film.vo.FilmVO;
 
 import java.util.List;
 

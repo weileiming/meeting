@@ -2,9 +2,9 @@ package me.willwei.meeting.film.modular.user.service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.core.util.MD5Util;
-import me.willwei.meeting.api.user.UserModel;
+import me.willwei.meeting.api.user.vo.UserModel;
 import me.willwei.meeting.api.user.UserService;
-import me.willwei.meeting.api.user.UserVO;
+import me.willwei.meeting.api.user.vo.UserVO;
 import me.willwei.meeting.film.common.persistence.dao.UserTMapper;
 import me.willwei.meeting.film.common.persistence.model.UserT;
 import org.apache.dubbo.config.annotation.Service;

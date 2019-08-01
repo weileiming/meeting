@@ -1,7 +1,8 @@
-package me.willwei.meeting.gateway.modular.film.vo;
+package me.willwei.meeting.api.film.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * @date 2019-08-01
  */
 @Data
-public class FilmVO {
+public class FilmVO implements Serializable {
 
     private int filmNum;
     private List<FilmInfo> filmInfo;

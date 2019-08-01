@@ -1,4 +1,4 @@
-package me.willwei.meeting.api.user;
+package me.willwei.meeting.api.user.vo;
 
 import java.io.Serializable;
 

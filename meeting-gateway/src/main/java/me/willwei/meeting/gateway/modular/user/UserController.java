@@ -1,8 +1,8 @@
 package me.willwei.meeting.gateway.modular.user;
 
-import me.willwei.meeting.api.user.UserModel;
+import me.willwei.meeting.api.user.vo.UserModel;
 import me.willwei.meeting.api.user.UserService;
-import me.willwei.meeting.api.user.UserVO;
+import me.willwei.meeting.api.user.vo.UserVO;
 import me.willwei.meeting.gateway.common.CurrentUser;
 import me.willwei.meeting.gateway.modular.vo.ResponseVO;
 import org.apache.dubbo.config.annotation.Reference;
