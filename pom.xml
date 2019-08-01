@@ -17,6 +17,7 @@
         <module>meeting-gateway</module>
         <module>meeting-api</module>
         <module>meeting-user</module>
+        <module>meeting-film</module>
     </modules>
 
     <parent>
