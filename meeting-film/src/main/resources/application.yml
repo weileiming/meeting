@@ -39,7 +39,7 @@ embedded:
   zookeeper:
     port: 2181
 
-user:
+film:
   service:
     version: 1.0.0
 
