@@ -1,11 +1,16 @@
 package me.willwei.meeting.film.modular.film.service;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.stylefeng.guns.core.util.DateUtil;
 import me.willwei.meeting.api.film.FilmServiceApi;
 import me.willwei.meeting.api.film.vo.BannerVO;
 import me.willwei.meeting.api.film.vo.FilmInfo;
 import me.willwei.meeting.api.film.vo.FilmVO;
 import me.willwei.meeting.film.common.persistence.dao.BannerTMapper;
+import me.willwei.meeting.film.common.persistence.dao.FilmTMapper;
 import me.willwei.meeting.film.common.persistence.model.BannerT;
+import me.willwei.meeting.film.common.persistence.model.FilmT;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,10 +29,16 @@ import java.util.List;
 public class DefaultFilmServiceImpl implements FilmServiceApi {
 
     private BannerTMapper bannerTMapper;
+    private FilmTMapper filmTMapper;
 
     @Autowired
     public void setBannerTMapper(BannerTMapper bannerTMapper) {
         this.bannerTMapper = bannerTMapper;
+    }
+
+    @Autowired
+    public void setFilmTMapper(FilmTMapper filmTMapper) {
+        this.filmTMapper = filmTMapper;
     }
 
     @Override
@@ -46,12 +57,48 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
 
     @Override
     public FilmVO getHotFilms(boolean isLimit, int nums) {
-        return null;
+        FilmVO filmVO = new FilmVO();
+        List<FilmInfo> filmInfos;
+
+        // 热映影片的限制条件
+        EntityWrapper<FilmT> entityWrapper = new EntityWrapper<>();
+        entityWrapper.eq("film_status", "1");
+        // 判断是否是首页需要的内容
+        if (isLimit) {
+            // 如果是，则限制条数、显示内容为热映影片
+            Page<FilmT> page = new Page<>(1, nums);
+            List<FilmT> films = filmTMapper.selectPage(page, entityWrapper);
+            // 组织filmInfos
+            filmInfos = getFilmInfos(films);
+            filmVO.setFilmNum(films.size());
+            filmVO.setFilmInfo(filmInfos);
+        } else {
+            // 如果不是，则是列表页，同样需要限制内容为热映影片
+        }
+        return filmVO;
     }
 
     @Override
     public FilmVO getSoonFilms(boolean isLimit, int nums) {
-        return null;
+        FilmVO filmVO = new FilmVO();
+        List<FilmInfo> filmInfos;
+
+        // 热映影片的限制条件
+        EntityWrapper<FilmT> entityWrapper = new EntityWrapper<>();
+        entityWrapper.eq("film_status", "1");
+        // 判断是否是首页需要的内容
+        if (isLimit) {
+            // 如果是，则限制条数、显示内容为热映影片
+            Page<FilmT> page = new Page<>(2, nums);
+            List<FilmT> films = filmTMapper.selectPage(page, entityWrapper);
+            // 组织filmInfos
+            filmInfos = getFilmInfos(films);
+            filmVO.setFilmNum(films.size());
+            filmVO.setFilmInfo(filmInfos);
+        } else {
+            // 如果不是，则是列表页，同样需要限制内容为热映影片
+        }
+        return filmVO;
     }
 
     @Override
@@ -67,6 +114,24 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
     @Override
     public List<FilmInfo> getTop() {
         return null;
+    }
+
+    private List<FilmInfo> getFilmInfos(List<FilmT> films) {
+        List<FilmInfo> filmInfos = new ArrayList<>();
+        for (FilmT filmT : films) {
+            FilmInfo filmInfo = new FilmInfo();
+            filmInfo.setFilmId(filmT.getUuid()+"");
+            filmInfo.setFilmName(filmT.getFilmName());
+            filmInfo.setScore(filmT.getFilmScore());
+            filmInfo.setImgAddress(filmT.getImgAddress());
+            filmInfo.setFilmType(filmT.getFilmType());
+            filmInfo.setFilmScore(filmT.getFilmScore());
+            filmInfo.setExpectNum(filmT.getFilmPresalenum());
+            filmInfo.setBoxNum(filmT.getFilmBoxOffice());
+            filmInfo.setShowTime(DateUtil.getDay(filmT.getFilmTime()));
+            filmInfos.add(filmInfo);
+        }
+        return filmInfos;
     }
 
 }
