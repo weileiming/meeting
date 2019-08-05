@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user/")
 public class UserController {
 
-    @Reference(version = "${user.service.version}")
+    @Reference(version = "${gateway.service.version}")
     private UserService userService;
 
     @RequestMapping(value = "register", method = RequestMethod.POST)

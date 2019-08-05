@@ -1,6 +1,9 @@
 package me.willwei.meeting.gateway.modular.film;
 
+import me.willwei.meeting.api.film.FilmServiceApi;
+import me.willwei.meeting.gateway.modular.film.vo.FilmIndexVO;
 import me.willwei.meeting.gateway.modular.vo.ResponseVO;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/film/")
 public class FilmController {
 
+    @Reference(version = "${gateway.service.version}")
+    private FilmServiceApi filmServiceApi;
+
     /**
      * 获取首页信息
      * API网关：
@@ -25,13 +31,21 @@ public class FilmController {
      */
     @RequestMapping(value = "getIndex", method = RequestMethod.GET)
     public ResponseVO getIndex() {
+        FilmIndexVO filmIndexVO = new FilmIndexVO();
         // 获取banner信息
+        filmIndexVO.setBanners(filmServiceApi.getBanners());
         // 获取正在热映的电影
+        filmIndexVO.setHotFilms(filmServiceApi.getHotFilms(true, 8));
         // 即将上映的电影
+        filmIndexVO.setSoonFilms(filmServiceApi.getSoonFilms(true, 8));
         // 票房排行
+        filmIndexVO.setBoxRanking(filmServiceApi.getBoxRanking());
         // 获取受欢迎的榜单
+        filmIndexVO.setExpectRanking(filmServiceApi.getExpectRanking());
         // 获取前一百
-        return null;
+        filmIndexVO.setTop100(filmServiceApi.getTop());
+
+        return ResponseVO.success(filmIndexVO);
     }
 
 }

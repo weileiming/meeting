@@ -13,7 +13,6 @@ import me.willwei.meeting.film.common.persistence.model.BannerT;
 import me.willwei.meeting.film.common.persistence.model.FilmT;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,6 @@ import java.util.List;
  * @author leiming
  * @date 2019-08-01
  */
-@Component
 @Service(version = "${film.service.version}")
 public class DefaultFilmServiceImpl implements FilmServiceApi {
 
