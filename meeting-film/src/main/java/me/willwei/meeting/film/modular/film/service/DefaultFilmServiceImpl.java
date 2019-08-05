@@ -60,7 +60,7 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
         FilmVO filmVO = new FilmVO();
         List<FilmInfo> filmInfos;
 
-        // 热映影片的限制条件
+        // 正在热映影片的限制条件
         EntityWrapper<FilmT> entityWrapper = new EntityWrapper<>();
         entityWrapper.eq("film_status", "1");
         // 判断是否是首页需要的内容
@@ -83,13 +83,13 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
         FilmVO filmVO = new FilmVO();
         List<FilmInfo> filmInfos;
 
-        // 热映影片的限制条件
+        // 即将上映影片的限制条件
         EntityWrapper<FilmT> entityWrapper = new EntityWrapper<>();
-        entityWrapper.eq("film_status", "1");
+        entityWrapper.eq("film_status", "2");
         // 判断是否是首页需要的内容
         if (isLimit) {
             // 如果是，则限制条数、显示内容为热映影片
-            Page<FilmT> page = new Page<>(2, nums);
+            Page<FilmT> page = new Page<>(1, nums);
             List<FilmT> films = filmTMapper.selectPage(page, entityWrapper);
             // 组织filmInfos
             filmInfos = getFilmInfos(films);
@@ -103,17 +103,44 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
 
     @Override
     public List<FilmInfo> getBoxRanking() {
-        return null;
+        // 条件->正在上映的，票房前10名
+        EntityWrapper<FilmT> entityWrapper = new EntityWrapper<>();
+        entityWrapper.eq("film_status", "1");
+
+        Page<FilmT> page = new Page<>(1, 10, "film_box_office");
+        List<FilmT> films = filmTMapper.selectPage(page, entityWrapper);
+
+        List<FilmInfo> filmInfos = getFilmInfos(films);
+
+        return filmInfos;
     }
 
     @Override
     public List<FilmInfo> getExpectRanking() {
-        return null;
+        // 条件->即将上映的，预售前10名
+        EntityWrapper<FilmT> entityWrapper = new EntityWrapper<>();
+        entityWrapper.eq("film_status", "2");
+
+        Page<FilmT> page = new Page<>(1, 10, "film_preSaleNum");
+        List<FilmT> films = filmTMapper.selectPage(page, entityWrapper);
+
+        List<FilmInfo> filmInfos = getFilmInfos(films);
+
+        return filmInfos;
     }
 
     @Override
     public List<FilmInfo> getTop() {
-        return null;
+        // 条件->正在上映的，评分前10名
+        EntityWrapper<FilmT> entityWrapper = new EntityWrapper<>();
+        entityWrapper.eq("film_status", "1");
+
+        Page<FilmT> page = new Page<>(1, 10, "film_score");
+        List<FilmT> films = filmTMapper.selectPage(page, entityWrapper);
+
+        List<FilmInfo> filmInfos = getFilmInfos(films);
+
+        return filmInfos;
     }
 
     private List<FilmInfo> getFilmInfos(List<FilmT> films) {
