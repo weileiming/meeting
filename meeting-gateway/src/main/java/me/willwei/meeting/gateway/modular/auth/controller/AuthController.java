@@ -22,7 +22,7 @@ public class AuthController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    @Reference(version = "${user.service.version}")
+    @Reference(version = "${gateway.service.version}")
     private UserService userService;
 
     @RequestMapping(value = "${jwt.auth-path}")
